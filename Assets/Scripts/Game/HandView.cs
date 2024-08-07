@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class HandView : MonoBehaviour {
     private List<CardView> _cardViews = new List<CardView>();
@@ -11,32 +10,62 @@ public class HandView : MonoBehaviour {
     private Transform _cardHolder;
 
     [SerializeField]
-    private Transform _handCenterPoint, _middleCardPoint, _farthestLeftCard;
+    private Transform _handCenterPoint, _farthestLeftCard;
 
+    [SerializeField]
+    private CardTarget _dropTarget;
+    
     [SerializeField]
     private float _handRadius, _handAngle;
 
-    public void AddRandomCard() {
-        CardData data = new CardData();
-        data.Name = "Ovosh#" + Random.Range(0, 99);
-        AddCard(data);
+    private void Awake() {
+        _dropTarget.Init(CanEndDragInHand,OnEndDragInHand);
     }
 
     public void AddCard(CardData data) {
         CardView newCard = CardFactory.Instance.GetCard(data);
-        _cardViews.Add(newCard);
-
-        //TODO newcard must be held in hand
-        newCard.transform.SetParent(_cardHolder);
+        AddCardView(newCard);
     }
 
-    public void RemoveFirstCard() {
-        CardView c = _cardViews.First();
-        _cardViews.Remove(c);
-        c.DestroyCard();
+    public void DrawCards(List<CardData> cards) {
+        foreach (var VARIABLE in cards) {
+            AddCard(VARIABLE);
+        }
     }
 
-    private void Update() {
+    private bool CanEndDragInHand(CardView card) {
+        return !_cardViews.Contains(card);
+    }
+
+    private void OnEndDragInHand(CardView card) {
+        AddCardView(card);
+    }
+
+    private void AddCardView(CardView card) {
+        _cardViews.Add(card);
+        card.transform.SetParent(_cardHolder);
+        card.OnMoved += RemoveCard;
+        card.OnDestroyed += RemoveCard;
+    }
+
+    public void StashAllCards() {
+        int count = _cardViews.Count;
+        for (int i = 0; i < count; i++) {
+            _cardViews.First().StashCard();
+        }
+        _cardViews.Clear();
+    }
+
+    private void RemoveCard(CardView card) {
+        if (_cardViews.Contains(card)) {
+            _cardViews.Remove(card);
+        }
+
+        card.OnMoved -= RemoveCard;
+        card.OnDestroyed -= RemoveCard;
+    }
+
+    private void LateUpdate() {
         UpdatePoses();
     }
 
@@ -47,7 +76,10 @@ public class HandView : MonoBehaviour {
         float radius = _farthestLeftCard.transform.localPosition.x;
         bool isEven = _cardViews.Count % 2 == 0;
         for (int index = 0; index < _cardViews.Count; index++) {
-            CardView VARIABLE = _cardViews[index];
+            CardView card = _cardViews[index];
+            if (CardDragManager.DraggingCard == card) {
+                continue;
+            }
 
             Vector3 newPos = Vector3.zero;
             int half = _cardViews.Count / 2;
@@ -68,8 +100,8 @@ public class HandView : MonoBehaviour {
 
             float percent = _cardViews.Count > 1 ? Mathf.Max(0, 0f + index) / (_cardViews.Count - 1) : 0.5f;
             newPos.y += Mathf.Sin(Mathf.PI * percent) * _handRadius;
-            VARIABLE.RectTransform.localPosition = newPos;
-            VARIABLE.RectTransform.up = VARIABLE.RectTransform.position - _handCenterPoint.position;
+            card.RectTransform.localPosition = newPos;
+            card.RectTransform.up = card.RectTransform.position - _handCenterPoint.position;
         }
     }
 }

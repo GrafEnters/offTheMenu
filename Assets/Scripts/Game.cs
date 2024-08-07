@@ -6,8 +6,12 @@ public class Game : MonoBehaviour {
 
     public GameManager GameManager;
 
+    public HandView HandView;
+    public BottomUI BottomUI;
+
     private void Awake() {
         Instance = this;
         GameManager = new GameManager();
+        GameManager.InitNewGame();
     }
 }
