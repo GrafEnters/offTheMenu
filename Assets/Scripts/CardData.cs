@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class CardData {
@@ -11,7 +12,7 @@ public class CardData {
 
     public int Delicious = 0;
 }
-
+[Serializable]
 public enum CardType {
     Food,
     CookedFood,
@@ -20,6 +21,7 @@ public enum CardType {
     Other
 }
 
+[Serializable]
 public enum CardTag {
     None = 0,
     Raw,
@@ -30,7 +32,7 @@ public enum CardTag {
     Vegan,
     Sweet
 }
-
+[Serializable]
 public enum CardMechanics {
     None = 0,
     Burn ,

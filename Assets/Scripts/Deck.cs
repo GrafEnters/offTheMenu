@@ -1,20 +1,19 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Deck {
     public List<CardData> CardDatas = new List<CardData>();
 
     public void GenerateDeck() {
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("ovoshBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("ovoshBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("ovoshBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("ovoshRare"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("myacoBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("myacoBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("myacoBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("myacoRare"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("fryingPanBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("fryingPanBase"));
-        CardDatas.Add(CardFactory.GetPrefabricatedCardData("fryingPanBase"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("veggie0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("veggie0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("veggie0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("veggie1"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("meat0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("meat0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("meat0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("meat1"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("pan0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("pan0"));
+        CardDatas.Add(CardFactory.GetPrefabricatedCardData("pan0"));
     }
 }

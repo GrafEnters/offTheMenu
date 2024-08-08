@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,6 +9,9 @@ public class CardFactory : MonoBehaviour {
 
     [SerializeField]
     private CardView _cardView;
+
+    [SerializeField]
+    private List<CardConfig> _cardsTable;
 
     private void Awake() {
         Instance = this;
@@ -20,8 +25,13 @@ public class CardFactory : MonoBehaviour {
     }
 
     //TODO create configs for this
-    public static CardData GetPrefabricatedCardData(string cardName) {
-        switch (cardName) {
+    public static CardData GetPrefabricatedCardData(string cardUid) {
+        CardConfig found = Instance._cardsTable.FirstOrDefault(c => c.Uid == cardUid);
+        if (found != null) {
+            return found.GetCardData();
+        }
+
+        switch (cardUid) {
             case "ovoshBase":
                 return new CardData() {
                     Name = "Ovosh#" + Random.Range(1, 99),
@@ -59,6 +69,6 @@ public class CardFactory : MonoBehaviour {
                 };
         }
 
-        throw new Exception("NotFoundPrefabricatedCard " + cardName);
+        throw new Exception("NotFoundPrefabricatedCard " + cardUid);
     }
 }
