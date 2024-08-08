@@ -29,7 +29,6 @@ public enum CardTag {
     Baked,
     Boiled,
     Meaty,
-    Vegan,
     Sweet
 }
 [Serializable]

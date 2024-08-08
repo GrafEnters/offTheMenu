@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Customer : MonoBehaviour {
     [SerializeField]
@@ -18,6 +20,12 @@ public class Customer : MonoBehaviour {
 
     public Action<int, bool> OnLeave;
 
+    [SerializeField]
+    private Transform _bodyPlace, _mouthPlace, _eyePlace, _hatPlace;
+    
+    [SerializeField]
+    private List<GameObject> _bodies, _mouths, _eyes, _hats;
+
     private void Awake() {
         _cardTarget.Init(CanEndDragOnMe, OnEndDragOnMe);
     }
@@ -29,7 +37,26 @@ public class Customer : MonoBehaviour {
         _pos = pos;
         _patienceView.SetPercent(_patience, _maxPatience);
         _orderView.SetData(data.BasicOrder, data.QualityOrder);
+
+        RandomizeLook();
         gameObject.SetActive(true);
+    }
+
+    private void RandomizeLook() {
+        if (_mouthPlace.childCount > 0) {
+            Destroy(_mouthPlace.GetChild(0).gameObject);
+        }
+        Instantiate(_mouths[Random.Range(0, _mouths.Count)], _mouthPlace);
+        
+        if (_eyePlace.childCount > 0) {
+            Destroy(_eyePlace.GetChild(0).gameObject);
+        }
+        Instantiate(_eyes[Random.Range(0, _eyes.Count)], _eyePlace);
+        
+        if (_hatPlace.childCount > 0) {
+            Destroy(_hatPlace.GetChild(0).gameObject);
+        }
+        Instantiate(_hats[Random.Range(0, _hats.Count)], _hatPlace);
     }
 
     public IEnumerator LosePatience() {

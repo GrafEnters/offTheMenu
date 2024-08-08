@@ -18,14 +18,24 @@ public class OrderView : MonoBehaviour {
             Destroy(_redHolder.GetChild(0).gameObject);
         }
 
-        foreach (var tagData in data.GreenTags) {
-            TagView tag = TagFactory.Instance.GetTagView(tagData);
-            tag.transform.SetParent(_greenHolder);
+        if (data.GreenTags.Count == 0) {
+            _greenHolder.gameObject.SetActive(false);
+        } else {
+            _greenHolder.gameObject.SetActive(true);
+            foreach (var tagData in data.GreenTags) {
+                TagView tag = TagFactory.Instance.GetTagView(tagData);
+                tag.transform.SetParent(_greenHolder);
+            }
         }
 
-        foreach (var tagData in data.RedTags) {
-            TagView tag = TagFactory.Instance.GetTagView(tagData);
-            tag.transform.SetParent(_redHolder);
+        if (data.RedTags.Count == 0) {
+            _redHolder.gameObject.SetActive(false);
+        } else {
+            _redHolder.gameObject.SetActive(true);
+            foreach (var tagData in data.RedTags) {
+                TagView tag = TagFactory.Instance.GetTagView(tagData);
+                tag.transform.SetParent(_redHolder);
+            }
         }
     }
 }

@@ -11,8 +11,10 @@ public class CustomerOrder : MonoBehaviour {
     private GameObject _backOneLine, _backTwoLines;
 
     public void SetData(OrderData basic, OrderData quality = null) {
-        _backOneLine.SetActive(quality == null);
-        _backTwoLines.SetActive(quality != null);
+        //_backOneLine.SetActive(quality == null);
+        //_backTwoLines.SetActive(quality != null);
+       
+        
         _basicOrder.SetData(basic);
         if (quality != null) {
             _qualityOrder.SetData(quality);

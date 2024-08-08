@@ -24,7 +24,7 @@ public class CustomersFactory {
                 },
                 QualityOrder = new OrderData() {
                     MinDelicious = 3,
-                    GreenTags = new List<CardTag>() { CardTag.Vegan }
+                    RedTags = new List<CardTag>() { CardTag.Meaty }
                 }
             },
             new CustomerData() {

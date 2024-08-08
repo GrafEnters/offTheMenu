@@ -69,5 +69,6 @@ public class GameManager {
 
     public void AddCoins(int amount = 1) {
         PlayerInventory.Coins += amount;
+        Game.Instance.TopUI.CoinsView.SetData(PlayerInventory.Coins);
     }
 }
