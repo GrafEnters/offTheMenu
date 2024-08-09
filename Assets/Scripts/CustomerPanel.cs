@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CustomerPanel : MonoBehaviour {
     [SerializeField]
@@ -38,6 +39,18 @@ public class CustomerPanel : MonoBehaviour {
         TryAddCustomer(2);
     }
 
+    private void TryEndDay() {
+        if (_datas.Count != 0 || CurrentCustomersDatas[0] != null || CurrentCustomersDatas[1] != null || CurrentCustomersDatas[2] != null) {
+            return;
+        }
+
+        EndDay();
+    }
+
+    private void EndDay() {
+        SceneManager.LoadScene("PathScene");
+    }
+
     private void TryAddCustomer(int pos) {
         if (_datas.Count <= 0 || CurrentCustomersDatas[pos] != null) {
             return;
@@ -70,5 +83,7 @@ public class CustomerPanel : MonoBehaviour {
 
         CurrentCustomersDatas[pos] = null;
         TryAddCustomer(pos);
+        
+        TryEndDay();
     }
 }

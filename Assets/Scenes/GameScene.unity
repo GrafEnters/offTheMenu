@@ -5136,6 +5136,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805316126}
   m_CullTransparentMesh: 1
+--- !u!1 &1822477269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822477271}
+  - component: {fileID: 1822477270}
+  m_Layer: 0
+  m_Name: DayFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1822477270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822477269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99c6d3533ba45deaa8d6c9301795841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dayConfigs:
+  - {fileID: 11400000, guid: af220d324410b79479511f99cf5af7e8, type: 2}
+  - {fileID: 11400000, guid: cba32cc6822a4f34198b84f7578f23ca, type: 2}
+  - {fileID: 11400000, guid: 132d12df49a61084bbf2dcd4d3b2d687, type: 2}
+--- !u!4 &1822477271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822477269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 407.2447, y: 1054.8994, z: -3.4982598}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1823008195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7938130965867031817, guid: 9b1cd5392be097b459650239a9dd3de0, type: 3}
@@ -6400,3 +6448,4 @@ SceneRoots:
   - {fileID: 627834678}
   - {fileID: 96636476}
   - {fileID: 704687707}
+  - {fileID: 1822477271}

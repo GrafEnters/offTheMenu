@@ -10,13 +10,16 @@ public class Game : MonoBehaviour {
     public BottomUI BottomUI;
     public TopUI TopUI;
     public CustomerPanel CustomerPanel;
-
     private void Awake() {
         Instance = this;
         GameManager = new GameManager();
     }
 
     private void Start() {
-        GameManager.InitNewGame();
+        if (!GameManager.IsGameInited) {
+            GameManager.InitNewGame();
+        }
+       
+        GameManager.InitNewDay();
     }
 }

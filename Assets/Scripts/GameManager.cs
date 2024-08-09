@@ -11,18 +11,23 @@ public class GameManager {
 
     private bool _isEndingRound;
 
+    public static bool IsGameInited = false;
+
     public void InitNewGame() {
         PlayerInventory = new PlayerInventory();
         PlayerInventory.Deck.GenerateDeck();
+        Hp = 3;
+    }
 
+    public void InitNewDay() {
         PlayingDeck = new PlayingDeck(PlayerInventory.Deck);
 
         MaxEnergy = 3;
         Energy = MaxEnergy;
-        Hp = 3;
 
         CustomersFactory = new CustomersFactory();
-        Game.Instance.CustomerPanel.QueueCustomers(CustomersFactory.GetCustomers());
+        CookingDayConfig config = DaysFactory.Instance.GetCookingDay(PathManager.NextLevelUid);
+        Game.Instance.CustomerPanel.QueueCustomers(config.CustomerDatas);
 
         Game.Instance.TopUI.HpView.SetData(Hp);
         Game.Instance.TopUI.DayView.SetData("Первый день");

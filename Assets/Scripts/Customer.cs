@@ -43,20 +43,30 @@ public class Customer : MonoBehaviour {
     }
 
     private void RandomizeLook() {
+        if (_bodyPlace.childCount > 0) {
+            Destroy(_bodyPlace.GetChild(0).gameObject);
+        }
+
+        int body = _customerData.Body != -1 ? _customerData.Body : Random.Range(0, _bodies.Count); 
+        Instantiate(_bodies[body], _bodyPlace);
+        
         if (_mouthPlace.childCount > 0) {
             Destroy(_mouthPlace.GetChild(0).gameObject);
         }
-        Instantiate(_mouths[Random.Range(0, _mouths.Count)], _mouthPlace);
+        int mouthIndex = _customerData.Mouth != -1 ? _customerData.Mouth : Random.Range(0, _mouths.Count); 
+        Instantiate(_mouths[mouthIndex], _mouthPlace);
         
         if (_eyePlace.childCount > 0) {
             Destroy(_eyePlace.GetChild(0).gameObject);
         }
-        Instantiate(_eyes[Random.Range(0, _eyes.Count)], _eyePlace);
+        int eyesIndex = _customerData.Eyes != -1 ? _customerData.Eyes : Random.Range(0, _eyes.Count); 
+        Instantiate(_eyes[eyesIndex], _eyePlace);
         
         if (_hatPlace.childCount > 0) {
             Destroy(_hatPlace.GetChild(0).gameObject);
         }
-        Instantiate(_hats[Random.Range(0, _hats.Count)], _hatPlace);
+        int hatsIndex = _customerData.Hat != -1 ? _customerData.Hat : Random.Range(0, _hats.Count);  
+        Instantiate(_hats[hatsIndex], _hatPlace);
     }
 
     public IEnumerator LosePatience() {
@@ -98,7 +108,7 @@ public class Customer : MonoBehaviour {
     }
 
     private bool CheckEatable(CardData cardData) {
-        return CheckOrder(cardData, _customerData.BasicOrder) || (_customerData.QualityOrder != null && CheckOrder(cardData, _customerData.QualityOrder));
+        return CheckOrder(cardData, _customerData.BasicOrder) || (_customerData.QualityOrder.MinDelicious != -1 && CheckOrder(cardData, _customerData.QualityOrder));
     }
 
     private bool CheckOrder(CardData cardData, OrderData order) {
@@ -123,7 +133,7 @@ public class Customer : MonoBehaviour {
 
     private void EatCard(CardView card) {
         Debug.Log("Customer ate " + card.CardData.Name + " Delicious " + card.CardData.Delicious);
-        if (_customerData.QualityOrder != null && CheckOrder(card.CardData, _customerData.QualityOrder)) {
+        if (_customerData.QualityOrder.MinDelicious != -1 && CheckOrder(card.CardData, _customerData.QualityOrder)) {
             Game.Instance.GameManager.AddCoins(3);
         } else {
             Game.Instance.GameManager.AddCoins(1);
