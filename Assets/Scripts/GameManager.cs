@@ -24,7 +24,7 @@ public class GameManager {
         PlayerInventory.Energy = PlayerInventory.MaxEnergy;
 
         CustomersFactory = new CustomersFactory();
-        CookingDayConfig config = DaysFactory.Instance.GetCookingDay(PathManager.NextLevelUid);
+        CookingDayConfig config = DaysFactory.Instance.GetCookingDay(OffTheMenuSaveLoadManager.Profile.PathData.CurrentPlace);
         Game.Instance.CustomerPanel.QueueCustomers(config.CustomerDatas);
 
         Game.Instance.TopUI.HpView.SetData(PlayerInventory.Hp);

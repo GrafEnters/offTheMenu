@@ -7,6 +7,8 @@ public class PathConfig : ScriptableObject {
     public float LineOfThreePercent = 0.3f;
     public float LineOfFourPercent = 0.75f;
     public float ChanceOfSecondPath = 0.3f;
+
+    public float MaxPathButtonViewShift = 1f;
     
     public int MaxShops = 3;
     public int MaxQuestions = 10;

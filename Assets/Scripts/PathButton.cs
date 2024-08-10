@@ -35,6 +35,10 @@ public class PathButton : MonoBehaviour {
         _button.interactable = false;
     }
 
+    public void SetInteractable(bool isInteractable) {
+        _button.interactable = isInteractable;
+    }
+
     public void OnSelected() {
         PathManager.Instance.SelectLevel(_config);
     }

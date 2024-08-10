@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayingDeck {
@@ -10,7 +11,7 @@ public class PlayingDeck {
     public Queue<CardData> BurnedCards = new Queue<CardData>();
 
     public PlayingDeck(Deck deck) {
-        CardDatas = new List<CardData>(deck.CardDatas);
+        CardDatas = new List<CardData>(deck.CardDatas).OrderBy(c => Random.Range(0, 1f)).ToList();
         LeftCards = new Queue<CardData>(CardDatas);
     }
 
@@ -57,9 +58,11 @@ public class PlayingDeck {
     }
 
     private void EmptyStash() {
-        int stashedCards = StashedCards.Count;
-        for (int i = 0; i < stashedCards; i++) {
+        List<CardData> reshuffled = new List<CardData>(StashedCards).OrderBy(c => Random.Range(0, 1f)).ToList();
+        foreach (var VARIABLE in reshuffled) {
             LeftCards.Enqueue(StashedCards.Dequeue());
         }
+
+        StashedCards.Clear();
     }
 }

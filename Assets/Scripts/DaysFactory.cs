@@ -9,11 +9,11 @@ public class DaysFactory : Singleton<DaysFactory> {
     private List<DayConfig> _uniqueDays;
 
     public void RefillUniqueDays() {
-        _uniqueDays = new List<DayConfig>(_daysList.DaysList);
+        _uniqueDays = new List<DayConfig>(_daysList.DaysList).OrderBy(c => Random.Range(0, 1f)).ToList();
     }
 
     public DayConfig GetDayByHardness(int hardness) {
-        DayConfig d = _uniqueDays.FirstOrDefault(d => d.MinHardness <= hardness && d.MaxHardness >= hardness);
+        DayConfig d = _uniqueDays.FirstOrDefault(d => d.MinHardness <= hardness && d.MaxHardness >= hardness && !d.IsBoss);
         _uniqueDays.Remove(d);
         if (d == null) {
             Debug.LogError("no day for hardness " + hardness);

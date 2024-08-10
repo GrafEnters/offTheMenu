@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,7 +17,6 @@ public class PathManager : MonoBehaviour {
     private Transform _connectionsHolder;
 
     public static PathManager Instance;
-    public static string NextLevelUid;
 
     private void Awake() {
         Instance = this;
@@ -32,7 +30,8 @@ public class PathManager : MonoBehaviour {
         PathData data = new PathData();
         data.Stage = stage;
         data.GeneratedDaysUids = new List<List<string>>();
-        data.GeneratedDaysUids.Add(new List<string>(){DaysFactory.Instance.GetEntryDay(stage * PathConfig.LinesAmount).Uid});
+        var entryDay = DaysFactory.Instance.GetEntryDay(stage * PathConfig.LinesAmount).Uid;
+        data.GeneratedDaysUids.Add(new List<string>() { entryDay });
 
         int minHardness = stage * PathConfig.LinesAmount;
 
@@ -41,12 +40,13 @@ public class PathManager : MonoBehaviour {
         }
 
         data.GeneratedDaysUids.Add(GenerateBossLine(stage * PathConfig.LinesAmount));
-        List<Connection> connections = new List<Connection>();  
+        List<Connection> connections = new List<Connection>();
         for (int i = 0; i < data.GeneratedDaysUids.Count - 1; i++) {
             connections.AddRange(GenerateConnections(data.GeneratedDaysUids[i], data.GeneratedDaysUids[i + 1]));
         }
 
         data.Connections = connections;
+        data.CurrentPlace = entryDay;
         return data;
     }
 
@@ -81,27 +81,14 @@ public class PathManager : MonoBehaviour {
             connections.Add(new Connection() {
                 From = from1, To = to1
             });
-            
-            /*if (to.Count > 1) {
-                if (Random.Range(0, 1f) < PathConfig.ChanceOfSecondPath) {
-                    string to2 = to[Random.Range(0, to.Count)];
-                    while (to2 != to1) {
-                        to2 = to[Random.Range(0, to.Count)];
-                    }
-
-                    connections.Add(new Connection() {
-                        From = VARIABLE, To = to2
-                    });
-                }
-            }*/
         }
-        
+
         foreach (var to1 in to) {
             if (connections.All(c => c.To != to1)) {
                 string from1 = from[Random.Range(0, from.Count)];
                 connections.Add(new Connection() {
                     From = from1, To = to1
-                }); 
+                });
             }
         }
 
@@ -109,14 +96,15 @@ public class PathManager : MonoBehaviour {
     }
 
     private void SetView(PathData data) {
-        _pathLine[0].GenerateEntryLine(data);
+        _pathLine[0].SetEntryLine(data);
         for (int i = 1; i < data.GeneratedDaysUids.Count - 1; i++) {
-            _pathLine[i].SetLineView(data.GeneratedDaysUids[i]);
+            _pathLine[i].SetLineView(data, data.GeneratedDaysUids[i]);
         }
 
-        _pathLine[^1].SetBossLine(data.GeneratedDaysUids.Last());
+        _pathLine[^1].SetBossLine(data, data.GeneratedDaysUids.Last());
 
         CreateConnections(data);
+        UpdateEnabledButtons();
     }
 
     private void CreateConnections(PathData data) {
@@ -127,16 +115,36 @@ public class PathManager : MonoBehaviour {
         }
     }
 
+    private void UpdateEnabledButtons() {
+        PathButton[] btns = FindObjectsByType<PathButton>(FindObjectsSortMode.None);
+        var data = OffTheMenuSaveLoadManager.Profile.PathData;
+        List<Connection> curConnections = data.Connections.Where(c => c.From == data.CurrentPlace).ToList();
+        foreach (PathButton pathButton in btns) {
+            pathButton.SetInteractable(curConnections.Any(c => c.To == pathButton.Uid));
+        }
+        
+        PathConnectionView[] consViews = FindObjectsByType<PathConnectionView>(FindObjectsSortMode.None);
+        foreach (PathConnectionView connectionView in consViews) {
+            connectionView.SetAttention(connectionView.From == data.CurrentPlace);
+        }
+    }
+
     public void SelectLevel(DayConfig config) {
         if (config.DayType == DayType.Fight || config.DayType == DayType.Elite || config.DayType == DayType.Boss) {
             StartFightDay(config);
         } else {
-            Debug.Log("lol kek");
+            StartOtherDay(config);
         }
     }
 
-    private static void StartFightDay(DayConfig config) {
-        NextLevelUid = config.Uid;
+    private void StartFightDay(DayConfig config) {
+        OffTheMenuSaveLoadManager.Profile.PathData.CurrentPlace = config.Uid;
         SceneManager.LoadScene("GameScene");
+    }
+
+    private void StartOtherDay(DayConfig config) {
+        OffTheMenuSaveLoadManager.Profile.PathData.CurrentPlace = config.Uid;
+        UpdateEnabledButtons();
+        Debug.Log("lol kek");
     }
 }
