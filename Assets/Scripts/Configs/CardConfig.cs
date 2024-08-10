@@ -6,12 +6,14 @@ public class CardConfig : ScriptableObject {
     public string Uid;
     public string CardName;
     public int Delicious;
+    public Sprite Icon;
     public List<CardType> CardTypes = new List<CardType>();
     public List<CardTag> CardTags = new List<CardTag>();
     public List<CardMechanics> CardMechanics = new List<CardMechanics>();
 
     public virtual CardData GetCardData() {
         return new CardData() {
+            Uid = Uid,
             Name = CardName,
             Delicious = Delicious,
             CardTypes = new List<CardType>(CardTypes),

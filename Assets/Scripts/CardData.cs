@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 public class CardData {
+    public string Uid;
     public string Name;
     public List<CardType> CardTypes = new List<CardType>();
     public List<CardTag> CardTags = new List<CardTag>();

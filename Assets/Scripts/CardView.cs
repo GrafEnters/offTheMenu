@@ -1,11 +1,17 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardView : MonoBehaviour {
     [SerializeField]
-    private TextMeshProUGUI _cardName;
+    private TextMeshProUGUI _cardName, _cardDeliciousText;
 
+    [SerializeField]
+    private GameObject _cardDeliciousHolder;
+    [SerializeField]
+    private Image _icon;
+    
     public RectTransform RectTransform;
 
     public Action<CardView> OnDestroyed;
@@ -21,6 +27,10 @@ public class CardView : MonoBehaviour {
     public void SetData(CardData data) {
         _cardData = data;
         _cardName.text = data.Name;
+        _icon.sprite = CardFactory.GetIconByUid(data.Uid);
+        
+        _cardDeliciousHolder.SetActive(data.CardTypes.Contains(CardType.Food));
+        _cardDeliciousText.text = data.Delicious.ToString();
     }
 
     public void OnStartDrag() {

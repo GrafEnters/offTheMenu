@@ -24,6 +24,11 @@ public class CardFactory : MonoBehaviour {
         return card;
     }
 
+    public static Sprite GetIconByUid(string cardUid) {
+        CardConfig found = Instance._cardsTable.First(c => c.Uid == cardUid);
+        return found.Icon;
+    }
+
     //TODO create configs for this
     public static CardData GetPrefabricatedCardData(string cardUid) {
         CardConfig found = Instance._cardsTable.FirstOrDefault(c => c.Uid == cardUid);

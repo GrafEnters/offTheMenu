@@ -15,6 +15,7 @@ MonoBehaviour:
   Uid: salad0
   CardName: "\u0421\u0430\u043B\u0430\u0442"
   Delicious: 0
+  Icon: {fileID: -5453079427517612880, guid: 665a0d8816ff7814b8499f4b6ed06c75, type: 3}
   CardTypes: 01000000
   CardTags: 
   CardMechanics: 02000000

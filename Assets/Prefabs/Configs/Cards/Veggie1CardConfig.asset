@@ -15,6 +15,7 @@ MonoBehaviour:
   Uid: veggie1
   CardName: "\u0412\u043A\u0443\u0441\u043D\u044B\u0439 \u041E\u0432\u043E\u0449"
   Delicious: 2
+  Icon: {fileID: -2822783269605367180, guid: 6363f5f28e9a6764181f99da7ee776a5, type: 3}
   CardTypes: 00000000
   CardTags: 
   CardMechanics: 

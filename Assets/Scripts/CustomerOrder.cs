@@ -10,13 +10,12 @@ public class CustomerOrder : MonoBehaviour {
     [SerializeField]
     private GameObject _backOneLine, _backTwoLines;
 
-    public void SetData(OrderData basic, OrderData quality = null) {
+    public void SetData(OrderData basic, OrderData quality) {
         //_backOneLine.SetActive(quality == null);
         //_backTwoLines.SetActive(quality != null);
-       
-        
+
         _basicOrder.SetData(basic);
-        if (quality != null) {
+        if (quality.MinDelicious > 0) {
             _qualityOrder.SetData(quality);
             _qualityOrder.gameObject.SetActive(true);
         } else {

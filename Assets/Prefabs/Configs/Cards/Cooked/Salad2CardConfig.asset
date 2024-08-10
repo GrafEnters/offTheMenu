@@ -16,6 +16,7 @@ MonoBehaviour:
   CardName: "\u0412\u0435\u043B\u0438\u043A\u043E\u043B\u0435\u043F\u043D\u044B\u0439
     \u0421\u0430\u043B\u0430\u0442"
   Delicious: 0
+  Icon: {fileID: -5453079427517612880, guid: 665a0d8816ff7814b8499f4b6ed06c75, type: 3}
   CardTypes: 01000000
   CardTags: 
   CardMechanics: 02000000

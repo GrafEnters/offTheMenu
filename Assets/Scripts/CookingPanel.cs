@@ -61,6 +61,15 @@ public class CookingPanel : MonoBehaviour {
                 combinedFood = variable.CookFoodCard(combinedFood);
             }
         }
+
+        string uid = "salad0";
+        if (combinedFood.CheckTag(CardTag.Fried)) {
+            uid = "grilled0";
+        }
+
+        combinedFood.Uid = uid;
+        combinedFood.Name = CardFactory.GetPrefabricatedCardData(uid).Name;
+        
         //cooked foods burn after being ate
         combinedFood.CardMechanics.Add(CardMechanics.BurnAfterAte);
         

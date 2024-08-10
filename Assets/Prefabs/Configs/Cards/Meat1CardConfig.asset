@@ -15,6 +15,7 @@ MonoBehaviour:
   Uid: meat1
   CardName: "\u0412\u043A\u0443\u0441\u043D\u043E\u0435 \u041C\u044F\u0441\u043E"
   Delicious: 2
+  Icon: {fileID: 7238752251186657878, guid: 18a26f5d5e76cf640882746d34c5adcd, type: 3}
   CardTypes: 00000000
   CardTags: 0100000005000000
   CardMechanics: 

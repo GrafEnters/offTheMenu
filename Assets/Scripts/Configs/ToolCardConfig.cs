@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToolCardConfig : CardConfig {
     public override CardData GetCardData() {
         return new CookingToolCardData() {
+            Uid = Uid,
             Name = CardName,
             Delicious = Delicious,
             CardTypes = new List<CardType>(CardTypes),

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43badf22a6a79884094f977f5bd7a70d, type: 3}
-  m_Name: Salad1CardConfig
+  m_Name: Grilled0CardConfig
   m_EditorClassIdentifier: 
-  Uid: salad1
-  CardName: "\u0412\u043A\u0443\u0441\u043D\u044B\u0439 \u0421\u0430\u043B\u0430\u0442"
+  Uid: grilled0
+  CardName: "\u041F\u043E\u0434\u0436\u0430\u0440\u043A\u0430"
   Delicious: 0
-  Icon: {fileID: -5453079427517612880, guid: 665a0d8816ff7814b8499f4b6ed06c75, type: 3}
+  Icon: {fileID: 1355130858887113484, guid: ab9e7932095ca7b4585ca86c7a753197, type: 3}
   CardTypes: 01000000
   CardTags: 
   CardMechanics: 02000000
