@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: CookingDayConfig 2
   m_EditorClassIdentifier: 
   Uid: 2
+  DayType: 1
+  MinHardness: 1
+  MaxHardness: 5
+  IsBoss: 0
   _customers:
   - Uid: customer0
     Name: 

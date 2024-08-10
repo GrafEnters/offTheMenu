@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52937a3041979e14daa406a944168abe, type: 3}
+  m_Name: BossDayConfig
+  m_EditorClassIdentifier: 
+  Uid: 1
+  DayType: 3
+  MinHardness: 0
+  MaxHardness: 10
+  IsBoss: 1
+  _customers:
+  - Uid: customer0
+    Name: 
+    Body: -1
+    Eyes: -1
+    Mouth: -1
+    Hat: -1
+    Patience: 3
+    MaxPatience: 3
+    BasicOrder:
+      MinDelicious: 2
+      GreenTags: 
+      RedTags: 
+    QualityOrder:
+      MinDelicious: 3
+      GreenTags: 
+      RedTags: 01000000

@@ -29,7 +29,7 @@ public class CookingPanel : MonoBehaviour {
     }
 
     public void Combine() {
-        if (Game.Instance.GameManager.Energy == 0) {
+        if (Game.Instance.GameManager.PlayerInventory.Energy == 0) {
             Debug.Log("No energy!");
             return;
         }
