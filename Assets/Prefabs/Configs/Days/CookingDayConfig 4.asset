@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52937a3041979e14daa406a944168abe, type: 3}
   m_Name: CookingDayConfig 4
   m_EditorClassIdentifier: 
-  Uid: 0
+  Uid: fight4
   DayType: 1
   MinHardness: 1
   MaxHardness: 5

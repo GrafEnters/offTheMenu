@@ -11,6 +11,12 @@ public class PathManager : MonoBehaviour {
     [SerializeField]
     private List<PathLine> _pathLine = new List<PathLine>();
 
+    [SerializeField]
+    private PathConnectionView _connectionPrefab;
+
+    [SerializeField]
+    private Transform _connectionsHolder;
+
     public static PathManager Instance;
     public static string NextLevelUid;
 
@@ -26,7 +32,7 @@ public class PathManager : MonoBehaviour {
         PathData data = new PathData();
         data.Stage = stage;
         data.GeneratedDaysUids = new List<List<string>>();
-        data.GeneratedDaysUids.Add(new List<string>());
+        data.GeneratedDaysUids.Add(new List<string>(){DaysFactory.Instance.GetEntryDay(stage * PathConfig.LinesAmount).Uid});
 
         int minHardness = stage * PathConfig.LinesAmount;
 
@@ -34,7 +40,13 @@ public class PathManager : MonoBehaviour {
             data.GeneratedDaysUids.Add(GenerateLine(minHardness + i));
         }
 
-        GenerateBossLine(stage * PathConfig.LinesAmount);
+        data.GeneratedDaysUids.Add(GenerateBossLine(stage * PathConfig.LinesAmount));
+        List<Connection> connections = new List<Connection>();  
+        for (int i = 0; i < data.GeneratedDaysUids.Count - 1; i++) {
+            connections.AddRange(GenerateConnections(data.GeneratedDaysUids[i], data.GeneratedDaysUids[i + 1]));
+        }
+
+        data.Connections = connections;
         return data;
     }
 
@@ -62,13 +74,57 @@ public class PathManager : MonoBehaviour {
         return new List<string>() { DaysFactory.Instance.GetBossDayByHardness(hardness).Uid };
     }
 
+    private static List<Connection> GenerateConnections(List<string> from, List<string> to) {
+        List<Connection> connections = new List<Connection>();
+        foreach (var from1 in from) {
+            string to1 = to[Random.Range(0, to.Count)];
+            connections.Add(new Connection() {
+                From = from1, To = to1
+            });
+            
+            /*if (to.Count > 1) {
+                if (Random.Range(0, 1f) < PathConfig.ChanceOfSecondPath) {
+                    string to2 = to[Random.Range(0, to.Count)];
+                    while (to2 != to1) {
+                        to2 = to[Random.Range(0, to.Count)];
+                    }
+
+                    connections.Add(new Connection() {
+                        From = VARIABLE, To = to2
+                    });
+                }
+            }*/
+        }
+        
+        foreach (var to1 in to) {
+            if (connections.All(c => c.To != to1)) {
+                string from1 = from[Random.Range(0, from.Count)];
+                connections.Add(new Connection() {
+                    From = from1, To = to1
+                }); 
+            }
+        }
+
+        return connections;
+    }
+
     private void SetView(PathData data) {
-        _pathLine[0].GenerateEntryLine();
+        _pathLine[0].GenerateEntryLine(data);
         for (int i = 1; i < data.GeneratedDaysUids.Count - 1; i++) {
             _pathLine[i].SetLineView(data.GeneratedDaysUids[i]);
         }
 
         _pathLine[^1].SetBossLine(data.GeneratedDaysUids.Last());
+
+        CreateConnections(data);
+    }
+
+    private void CreateConnections(PathData data) {
+        PathButton[] btns = FindObjectsByType<PathButton>(FindObjectsSortMode.None);
+        foreach (var VARIABLE in data.Connections) {
+            PathConnectionView c = Instantiate(_connectionPrefab, _connectionsHolder);
+            c.Init(btns.First(b => b.Uid == VARIABLE.From), btns.First(b => b.Uid == VARIABLE.To));
+        }
     }
 
     public void SelectLevel(DayConfig config) {

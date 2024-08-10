@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3686984d3d09b54ba45d0238a8cfdfa, type: 3}
-  m_Name: QustionDayConfig 1
+  m_Name: EntryDay
   m_EditorClassIdentifier: 
-  Uid: question1
-  DayType: 4
+  Uid: entry0
+  DayType: 0
   MinHardness: 0
-  MaxHardness: 1000
+  MaxHardness: 100000
   IsBoss: 0

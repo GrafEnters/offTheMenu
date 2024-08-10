@@ -7,12 +7,12 @@ public class PathLine : MonoBehaviour {
     private List<PathButton> _pathButtons;
 
     private List<PathButton> _enabledButtons;
-
-    public void GenerateEntryLine() {
+    
+    public void GenerateEntryLine(PathData data) {
         DisableButtons();
         _enabledButtons = new List<PathButton>();
         PathButton b = _pathButtons[2];
-        b.SetAsEntryDay();
+        b.SetAsEntryDay(DaysFactory.Instance.GetDayByUid(data.GeneratedDaysUids.First().First()));
         _enabledButtons.Add(b);
     }
 

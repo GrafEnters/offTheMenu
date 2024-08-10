@@ -15,17 +15,23 @@ public class PathButton : MonoBehaviour {
 
     [SerializeField]
     private Image _iconImage;
+    [SerializeField]
+    private RectTransform _rectTransform;
+
+    public RectTransform RectTransform => _rectTransform;
+    public string Uid => _config?.Uid ?? "";
+
     public void Init(DayConfig config) {
         _config = config;
 
         _iconImage.sprite = _sprites.FirstOrDefault(p => p.Type == config.DayType)!.Sprite;
-        
+
         _button.onClick.AddListener(OnSelected);
         gameObject.SetActive(true);
     }
 
-    public void SetAsEntryDay() {
-        gameObject.SetActive(true);
+    public void SetAsEntryDay(DayConfig config) {
+        Init(config);
         _button.interactable = false;
     }
 
@@ -33,6 +39,7 @@ public class PathButton : MonoBehaviour {
         PathManager.Instance.SelectLevel(_config);
     }
 }
+
 [Serializable]
 public class TypeSpritePair {
     public DayType Type;

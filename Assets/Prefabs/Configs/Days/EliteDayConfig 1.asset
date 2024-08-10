@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52937a3041979e14daa406a944168abe, type: 3}
   m_Name: EliteDayConfig 1
   m_EditorClassIdentifier: 
-  Uid: elite1
+  Uid: elite2
   DayType: 2
   MinHardness: 4
   MaxHardness: 10

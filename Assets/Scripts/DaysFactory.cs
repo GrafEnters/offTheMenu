@@ -31,6 +31,12 @@ public class DaysFactory : Singleton<DaysFactory> {
     public CookingDayConfig GetCookingDay(string uid) {
         return _daysList.DaysList.FirstOrDefault(d => d.Uid == uid) as CookingDayConfig;
     }
+    
+    public DayConfig GetEntryDay(int hardness) {
+        DayConfig d = _uniqueDays.FirstOrDefault(d => d.MinHardness <= hardness && d.MaxHardness >= hardness && d.DayType == DayType.Entry);
+        _uniqueDays.Remove(d);
+        return d;
+    }
 
     public DayConfig GetDayByUid(string uid) => _daysList.DaysList.FirstOrDefault(d => d.Uid == uid);
 }

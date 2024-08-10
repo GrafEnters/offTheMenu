@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3686984d3d09b54ba45d0238a8cfdfa, type: 3}
   m_Name: ShopDayConfig
   m_EditorClassIdentifier: 
-  Uid: shop
+  Uid: shop0
   DayType: 5
   MinHardness: 1
   MaxHardness: 1000

@@ -358,4 +358,7 @@ MonoBehaviour:
     Sprite: {fileID: -1183748483409382922, guid: 74af230c8199bbe41bbf35f0ec8d5bc9, type: 3}
   - Type: 4
     Sprite: {fileID: -5832548149564651538, guid: 74af230c8199bbe41bbf35f0ec8d5bc9, type: 3}
+  - Type: 0
+    Sprite: {fileID: -5832548149564651538, guid: 74af230c8199bbe41bbf35f0ec8d5bc9, type: 3}
   _iconImage: {fileID: 5565381302100556917}
+  _rectTransform: {fileID: 7992360579811534646}
