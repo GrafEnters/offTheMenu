@@ -1,1 +1,1 @@
-public class OffTheMenuSaveLoadManager : SaveLoadManager<OffTheMenuSaveProfile> { }
+public class OffTheMenuSaveLoadManager : SaveLoadManager<OffTheMenuSaveLoadManager,OffTheMenuSaveProfile> { }

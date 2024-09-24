@@ -27,8 +27,12 @@ public class GameManager {
         CookingDayConfig config = DaysFactory.Instance.GetCookingDay(OffTheMenuSaveLoadManager.Profile.PathData.CurrentPlace);
         Game.Instance.CustomerPanel.QueueCustomers(config.CustomerDatas);
 
+        Game.Instance.TopUI.CoinsView.SetData(PlayerInventory.Coins);
         Game.Instance.TopUI.HpView.SetData(PlayerInventory.Hp);
-        Game.Instance.TopUI.DayView.SetData("Первый день");
+        string dayname = config.DayName != ""
+            ? config.DayName
+            : DaysFactory.Instance.GetDayName(OffTheMenuSaveLoadManager.Profile.PathData.Stage);
+        Game.Instance.TopUI.DayView.SetData(dayname);
         Game.Instance.BottomUI.SetData(PlayingDeck, PlayerInventory.Energy, PlayerInventory.MaxEnergy);
     }
 

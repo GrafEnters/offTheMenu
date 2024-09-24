@@ -39,4 +39,6 @@ public class DaysFactory : Singleton<DaysFactory> {
     }
 
     public DayConfig GetDayByUid(string uid) => _daysList.DaysList.FirstOrDefault(d => d.Uid == uid);
+
+    public string GetDayName(int stage) => _daysList.DaysNames[stage];
 }

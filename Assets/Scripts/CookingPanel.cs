@@ -14,9 +14,9 @@ public class CookingPanel : MonoBehaviour {
     private Button _combineButton;
 
     private void Awake() {
-        _card1.InitHolder((c) => c.CardData.CheckType(CardType.Food));
-        _card2.InitHolder((c) => c.CardData.CheckType(CardType.Food));
-        _cookingTool.InitHolder((c) => c.CardData.CheckType(CardType.Tool));
+        _card1.InitHolder(c => c.CardData.CheckType(CardType.Food));
+        _card2.InitHolder(c => c.CardData.CheckType(CardType.Food));
+        _cookingTool.InitHolder(c => c.CardData.CheckType(CardType.Tool));
     }
 
     private void Update() {

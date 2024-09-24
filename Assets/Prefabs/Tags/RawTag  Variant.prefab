@@ -8,21 +8,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2198818933805684556, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198818933805684556, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198818933805684556, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198818933805684556, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198818933805684556, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4287072245
+      objectReference: {fileID: 0}
     - target: {fileID: 2328222229327081667, guid: fce04889ecd690940956a62c8d6de493, type: 3}
       propertyPath: m_Name
       value: RawTag  Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5808298794444637876, guid: fce04889ecd690940956a62c8d6de493, type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808298794444637876, guid: fce04889ecd690940956a62c8d6de493, type: 3}
       propertyPath: m_Color.b
-      value: 0.5283374
+      value: 0.5294118
       objectReference: {fileID: 0}
     - target: {fileID: 5808298794444637876, guid: fce04889ecd690940956a62c8d6de493, type: 3}
       propertyPath: m_Color.g
-      value: 0.5283374
+      value: 0.5294118
       objectReference: {fileID: 0}
     - target: {fileID: 5808298794444637876, guid: fce04889ecd690940956a62c8d6de493, type: 3}
       propertyPath: m_Color.r
-      value: 0.9622642
+      value: 0.9607843
       objectReference: {fileID: 0}
     - target: {fileID: 8880299206334516249, guid: fce04889ecd690940956a62c8d6de493, type: 3}
       propertyPath: m_Pivot.x

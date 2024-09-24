@@ -44,12 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99c6d3533ba45deaa8d6c9301795841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayConfigs:
-  - {fileID: 11400000, guid: af220d324410b79479511f99cf5af7e8, type: 2}
-  - {fileID: 11400000, guid: cba32cc6822a4f34198b84f7578f23ca, type: 2}
-  - {fileID: 11400000, guid: 132d12df49a61084bbf2dcd4d3b2d687, type: 2}
-  - {fileID: 11400000, guid: ddb7d5c89d1fc5641aafd744227a9710, type: 2}
-  - {fileID: 11400000, guid: 19a73c74abf48c4478517265e1e9b158, type: 2}
-  - {fileID: 11400000, guid: 8a37c3fe2cf4e994ca6691c34100c519, type: 2}
-  - {fileID: 11400000, guid: bd349e02352530443b7d5c920c96b786, type: 2}
-  - {fileID: 11400000, guid: 203632dc666c94e4b8194e8838d3a629, type: 2}
+  _daysList: {fileID: 11400000, guid: 09a107ace6b685b44a67201d5dad5a93, type: 2}

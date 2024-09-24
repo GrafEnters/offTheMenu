@@ -11,6 +11,9 @@ public class CardView : MonoBehaviour {
     private GameObject _cardDeliciousHolder;
     [SerializeField]
     private Image _icon;
+
+    [SerializeField]
+    private Transform _tagsHolder;
     
     public RectTransform RectTransform;
 
@@ -20,7 +23,6 @@ public class CardView : MonoBehaviour {
     private CardData _cardData;
     private Transform _previousParent;
 
-    private bool _isDestroyed;
 
     public CardData CardData => _cardData;
     
@@ -31,6 +33,13 @@ public class CardView : MonoBehaviour {
         
         _cardDeliciousHolder.SetActive(data.CardTypes.Contains(CardType.Food));
         _cardDeliciousText.text = data.Delicious.ToString();
+        CreateTags(data);
+    }
+
+    private void CreateTags(CardData data) {
+        foreach (var VARIABLE in data.CardTags) {
+            Instantiate(TagFactory.Instance.GetTagView(VARIABLE), _tagsHolder);
+        }
     }
 
     public void OnStartDrag() {
@@ -64,7 +73,6 @@ public class CardView : MonoBehaviour {
     }
 
     private void DestroyView() {
-        _isDestroyed = true;
         OnDestroyed?.Invoke(this);
     }
 }
